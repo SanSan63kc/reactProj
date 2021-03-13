@@ -1,0 +1,60 @@
+.app__content{
+    grid-area:c;
+    background-color:gray;
+  }
+
+.post__content{
+    height: auto;
+    padding: 10px 15px;
+    margin-bottom: 10px; 
+    background-color: white;
+    border-radius: 10px;
+  }
+
+.post__title{
+    display:flex;
+    align-items: center;
+  }
+
+.post__avatar{
+    max-width: 70px;
+   /*  border: 2px solid blue; */
+    border-radius: 50%;
+  }
+
+.post__text{
+    padding: 0 20px;
+    color:rgb(0, 0, 0);
+  }
+
+.post__footer{
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    border-top: 1px solid #edeef0;
+  }
+
+.likes__block{
+    display: flex;
+    align-items: center;
+    padding-left: 5px;
+    padding-right: 5px;
+    color:gray;
+  }
+
+.comments__block{
+    display: flex;
+    align-items: center;
+    padding-left: 5px;
+    padding-right: 5px;
+    color:gray;
+  }
+
+  .likescount{
+    margin-left: 2px;
+  }
+
+  .commentscount{
+    margin-left: 2px;
+  }
+  

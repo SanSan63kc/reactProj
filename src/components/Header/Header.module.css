@@ -1,0 +1,24 @@
+.app__header{
+    grid-area:h;
+    background-color: #507299; 
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    border:2px solid white;
+    border-radius: 5px;
+  }
+
+  .header__text{
+    color:white;
+    font-weight: 700;
+    font-size: 16px;
+  }
+
+  .login__block{
+    padding-left: 40px;
+    float:right;
+  }
+
+  .login__block a{
+    color: white;
+  }

@@ -1,0 +1,230 @@
+ .profile__page{
+   display:flex;
+ }
+
+ .leftBlock_container {
+  width: 100%;
+  max-width: 200px;
+  padding: 25 15px;
+  margin: 0 auto;
+}
+
+ .rightBlock_container {
+  width: 100%;
+  max-width: 620px;
+  padding: 25 15px;
+  margin: 0 auto;
+}
+
+
+
+ /*наполнение блока левой части */
+ .left__block{
+  min-width: 220px;
+  height: auto;
+ }
+
+ .profile__ava{
+   background-color: white;
+   border-radius: 3px;
+ }
+
+ .profile__ava img{
+  padding-top: 10px;
+  max-width: 200px;
+  height: auto;
+  border-radius: 3px;
+}
+
+/* Блок подарков */
+
+.bounty__block{
+  margin-top: 10px;
+  background-color: white;
+  border-radius: 3px;
+}
+
+.bounty__title{
+  padding-top: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.bounty__staticText{
+  font-size: 14px;
+}
+
+.bounty__count{
+  padding-left: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  color: gray;
+}
+
+.bounty__item img{
+  max-width: 64px;
+  max-height: 64px;
+  cursor: pointer;
+}
+
+.bounty__content{
+  margin: 10px 0px;
+  display: flex;
+  justify-content: space-between;
+}
+
+ /*наполнение блока правой части */
+ .right__block{
+  margin-left: 20px;
+  min-width: 700px;
+}
+
+.userMainInfo__block{
+  border-radius: 3px;
+  background-color: #fff;
+  width: 100%;
+}
+
+.mainInfo__title{
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* титульная строка профиля(имя+статус) */
+.namestatus{
+  max-width: 500px;
+  padding-top: 10px;
+ display: flex;
+ justify-content:space-between;
+}
+
+/* Имя пользователя */
+.userName{
+  font-size: 20px;
+}
+
+/* Статус пользователя (в сети\не в сети) */
+.userOnlineStatus{
+  color:gray;
+}
+
+/* Место для умных цитаточек */
+.userStatus{
+  color:gray
+}
+
+.birthData__block{
+  margin-top: 15px;
+}
+
+.birthData__static, .work__static, .liveIn__static, .language__static, .skype__static, .instagram__static, .studyIn__static{
+  color:gray;
+  min-width: 40%;
+  font-size: 12px;
+  font-weight: 450;
+}
+
+.birthData__value, .workedIn__value, .liveIn__value, .language__value, .skype__value,.instagram__value, .studyIn__value{
+  color:#507299;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 450;
+}
+
+.birthData__value:hover{
+  text-decoration: underline;
+} 
+
+.workedIn__value:hover{
+  text-decoration: underline;
+} 
+
+.liveIn__value:hover{
+  text-decoration: underline;
+}  
+
+.language__value:hover{
+  text-decoration: underline;
+} 
+
+.skype__value:hover{
+  text-decoration: underline;
+}  
+
+.instagram__value:hover{
+  text-decoration: underline;
+} 
+
+.studyIn__value:hover{
+  text-decoration: underline;
+}
+
+.birthData__block,.work__block, .liveIn__block,.language__block, .skype__block, .instagram__block, .studyIn__block{
+  display: flex;
+  align-items: center;
+  min-width: 60%;
+}
+
+/* Карточка пользователя с цифрами */
+.mainInfo__card {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  max-width: 560px;
+}
+
+.mainInfo__cardItem {
+  flex: 1 1 0;
+  padding: 15px 15px;
+  text-align: center;
+  color:#507299;
+  cursor: pointer;
+}
+
+.mainInfo__cardItem:first-child{
+  border-left:none;
+}
+
+.mainInfo__cardCount {
+  margin-bottom: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1;
+  /* cursor: pointer; */
+}
+
+.mainInfo__cardText {
+  font-size: 14px;
+  color:gray;
+}
+
+/* Блок с фотографиями */
+.myPhotos__block{
+  margin-top: 15px;
+  height: auto;
+  background-color: #fff;
+  border-radius: 3px;
+}
+
+.myPhotos__title{
+  display: flex;
+  align-items: center;
+}
+
+.myPhotos__staticText{
+  font-size: 14px;
+}
+
+.myPhotos__count{
+  padding-left: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  color: gray;
+}
+
+.myPhotos__count:hover{
+  text-decoration: underline;
+}
+ 
