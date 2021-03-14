@@ -11,8 +11,13 @@ class ProfileContainer extends React.Component{
         let userId=this.props.match.params.userId
 
         if(!userId){
-            userId=15056
+            userId=1
         }
+        /* axios.get(`http://localhost:3001/items/`+userId)
+        .then(response=>{   
+            this.props.setUserProfile(response.data);        
+          }) */ /* мой запрос */
+        https://social-network.samuraijs.com/api/1.0/users
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/`+userId)
         .then(response=>{   
             this.props.setUserProfile(response.data);        

@@ -1,6 +1,7 @@
 import React from 'react'
 import classes from "./Frends.module.css";
 import {NavLink} from "react-router-dom" 
+import * as axios from "axios";
 
 let Frends =(props)=>{
     
@@ -12,7 +13,7 @@ let Frends =(props)=>{
       pages.push(i)
     }
     
-    return  (
+    return <div>
     <div className={classes.frendsPage}>
                 <div className={classes.usersList}>
                 <div>
@@ -36,11 +37,34 @@ let Frends =(props)=>{
                     </div>
                     <div className={classes.follow__block}>
                         {u.followed ? (
-                        <button className={classes.follow__btn} onClick={() => {props.unfollow(u.id)}} >
+                        <button className={classes.follow__btn} onClick={() => {   
+                            axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,{
+                                withCredentials:true,
+                                headers:{
+                                    "API-KEY":"b4f14c7e-a857-4106-825f-7a0de08c5d4e"
+                                }
+                            })
+                            .then(response=>{   
+                                if (response.data.resultCode==0){
+                                    props.unfollow(u.id)
+                                }
+                            })                         
+                            }} >
                             Подписан
                         </button>
                         ) : (
-                        <button className={classes.follow__btn} onClick={() => {props.follow(u.id) }} >
+                        <button className={classes.follow__btn} onClick={() => {                           
+                            axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,{},{
+                                withCredentials:true,
+                                headers:{
+                                    "API-KEY":"b4f14c7e-a857-4106-825f-7a0de08c5d4e"
+                                }})
+                            .then(response=>{   
+                                if (response.data.resultCode==0){
+                                    props.follow(u.id)
+                                }
+                            })                      
+                            }} >
                             Отписан
                         </button>
                         )}
@@ -52,7 +76,8 @@ let Frends =(props)=>{
                 <div className={classes.firstPanel}>Там, где куча всяких параметров по поиску друзей</div>
                 <div className={classes.secondPanel}>Там, где возможные друзья</div>
                 </div>
-  </div>)
+  </div>
+  </div>
 }
 
 export default Frends
