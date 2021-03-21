@@ -1,6 +1,7 @@
 import React from 'react'
 import Preloader from '../../common/Preloader/Preloader'
 import styles from './ProfileInfo.module.css'
+import ProfileStatus from "./ProfileStatus"
 
 const ProfileInfo = (props)=>{
 
@@ -68,6 +69,8 @@ const ProfileInfo = (props)=>{
                     {/* <div className={styles.userStatus}>{props.profile.status}</div> */}
                     <div className={styles.userOnlineStatus}>{props.profile.onlineNow ?"online":"offline"}</div>
                   </div>
+                  {/* Статус пользователя */}
+                  <ProfileStatus status={"Hello"}/>
                 {/* Дата рождения */}
                 <div className={styles.birthData__block}>
                   <div className={styles.birthData__static}>День рождения:</div>
