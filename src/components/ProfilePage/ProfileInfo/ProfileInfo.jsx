@@ -70,7 +70,7 @@ const ProfileInfo = (props)=>{
                     <div className={styles.userOnlineStatus}>{props.profile.onlineNow ?"online":"offline"}</div>
                   </div>
                   {/* Статус пользователя */}
-                  <ProfileStatus status={"Hello"}/>
+                  <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
                 {/* Дата рождения */}
                 <div className={styles.birthData__block}>
                   <div className={styles.birthData__static}>День рождения:</div>
