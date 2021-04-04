@@ -1,8 +1,13 @@
 import React from 'react'
 import { Redirect } from 'react-router'
+import { Field, reduxForm } from 'redux-form'
+import { maxLengthCreator, required } from '../../utils/validators/validators'
+import { Textarea } from '../common/FormsControls/FormsControls'
 import classes from './Dialogs.module.css'
 import DialogUserLink from './DialogUserLink/DialogUserLink'
 import DialogWithUser from './DialogWithUser/DialogWithUser'
+
+const maxLength50=maxLengthCreator(50)
 
 const Dialogs = (props)=>{
 
@@ -26,15 +31,10 @@ const Dialogs = (props)=>{
       />
   )
 
-  let newMessageBody=state.newMessageBody
+  /* let newMessageBody=state.newMessageBody */
 
-  let onSendMessageClick=()=>{
-    props.sendMessage()
-  }
-
-  let onNewMessageChange=(e)=>{
-    let body = e.target.value;
-    props.updateNewMessageBody(body)
+  let addNewMessage=(values)=>{
+    props.sendMessage(values.newMessageBody)
   }
 
   if (!props.isAuth) return <Redirect to={"/login"}/>
@@ -44,28 +44,27 @@ const Dialogs = (props)=>{
         <div className={classes.user__list}>
           {dialogElements}
         </div> 
-
         <div className={classes.dialog__list}>
-          {messagesElements}
-
-          <div className={classes.addMess}>
-              <textarea
-                className={classes.addMess__input} 
-                value={newMessageBody} 
-                onChange={onNewMessageChange}
-                placeholder='Напишите сообщение'
-              >
-              </textarea>
-              <button 
-                className={classes.addMess__btn}
-                onClick={onSendMessageClick} 
-                type="button">
-                  Отправить
-              </button>
-          </div>  
-        </div>   
+          {messagesElements}        
+        </div>
+        <AddMessageFormRedux onSubmit={addNewMessage}/>
       </div>
     )
 }
+
+const AddMessageForm=(props)=>{
+  return (
+    <form onSubmit={props.handleSubmit}>
+      <div className={classes.addMess}>
+              <Field /* className={classes.addMess__input} */ component={Textarea}
+                      validate={[required,maxLength50]} 
+                      name="newMessageBody" placeholder="Напишите сообщение"/>
+              <button className={classes.addMess__btn}>Отправить</button>
+          </div> 
+    </form>
+  )
+}
+
+const AddMessageFormRedux=reduxForm({form:"dialodAddMessageForm"})(AddMessageForm)
 
 export default Dialogs;

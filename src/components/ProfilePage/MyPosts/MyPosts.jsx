@@ -1,6 +1,33 @@
 import classes from './MyPosts.module.css';
 import React from 'react'
 import Post from './Post/Post';
+import { Field, reduxForm } from 'redux-form';
+import {required,maxLengthCreator} from "../../../utils/validators/validators"
+import { Textarea } from '../../common/FormsControls/FormsControls';
+
+const maxLength10=maxLengthCreator(10)
+
+const AddNewPostForm=(props)=>{
+  return(
+    <form onSubmit={props.handleSubmit}>     
+            <div className={classes.createPost}>
+              <Field
+                /* className={classes.createPost__input} */
+                name="newPostText"
+                component={Textarea}
+                validate={[required, maxLength10]}
+                placeholder="Напишите что-нибудь...">
+              </Field>
+            </div>
+            <div>
+              <button 
+                className={classes.createPost__btn}>Отправить</button>
+            </div>  
+          </form>
+  )
+}
+
+let AddNewPostFormRedux=reduxForm({form:"ProfileAddNewPostForm"})(AddNewPostForm)
 
 const MyPosts = (props)=>{
 
@@ -10,35 +37,14 @@ const MyPosts = (props)=>{
 
     let newPostElement = React.createRef();
     
-    let onAddPost= ()=>{
-      props.addPost()  
-    }
-
-    let onPostChange=()=>{
-      let text = newPostElement.current.value
-      props.updateNewPostText(text)
+    let onAddPost= (values)=>{
+      props.addPost(values.newPostText)  
     }
 
     return(
         <div>
           My posts
-          <div>     
-            <div className={classes.createPost}>
-              <textarea  
-                ref={newPostElement} 
-                onChange={onPostChange} 
-                className={classes.createPost__input} 
-                type="text" name="name" 
-                placeholder="Напишите что-нибудь..." 
-                value={props.newPostText}>
-              </textarea>
-              <button 
-                className={classes.createPost__btn} 
-                onClick={onAddPost} 
-                type="button">Отправить</button>
-            </div>  
-          </div>
-          
+          <AddNewPostFormRedux onSubmit={onAddPost}/>       
           <div>
             {postElements}
           </div>
@@ -46,5 +52,7 @@ const MyPosts = (props)=>{
 
     )
 }
+
+
 
 export default MyPosts;
