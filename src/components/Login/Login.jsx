@@ -5,6 +5,7 @@ import { Field, reduxForm } from 'redux-form'
 import { login } from '../../redux/auth-reducer'
 import { required } from '../../utils/validators/validators'
 import { Input } from '../common/FormsControls/FormsControls'
+import styles from "./../common/FormsControls/FormsControls.module.css"
 
 const LoginForm = (props) =>{
     return (   
@@ -21,6 +22,9 @@ const LoginForm = (props) =>{
                 <Field component={Input} name={"rememberMe"} 
                 type={"checkbox"} />запомнить меня
             </div>
+            {props.error && <div className={styles.formSummaryError}>
+                {props.error}
+            </div>}
             <div>
                 <button>Login</button>
             </div>
