@@ -1,10 +1,8 @@
-import * as axios from "axios";
 import { connect } from 'react-redux'
 import React from 'react'
 import { getStatus, getUserProfile, updateStatus} from '../../redux/profile-reducer'
 import ProfilePage from './ProfilePage'
-import { Redirect, withRouter } from "react-router-dom";
-import { withAuthRedirect } from "../../hoc/withAuthRedirect";
+import {withRouter } from "react-router-dom";
 import { compose } from "redux";
 
 
@@ -15,6 +13,9 @@ class ProfileContainer extends React.Component{
 
         if(!userId){
             userId=this.props.autorizedUserId
+            if(!userId){
+                this.props.history.push("/login")
+            }
         }
         this.props.getUserProfile(userId)
         setTimeout(()=>{

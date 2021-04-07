@@ -1,8 +1,6 @@
 import React from 'react'
 import classes from "./Frends.module.css";
-import {NavLink} from "react-router-dom" 
-import * as axios from "axios";
-import { usersAPI } from '../../api/api';
+import {NavLink} from "react-router-dom"
 
 let Frends =(props)=>{
     
