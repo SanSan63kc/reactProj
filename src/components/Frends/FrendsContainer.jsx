@@ -1,10 +1,11 @@
 import React from 'react'
 import Frends from './Frends';
 import { connect } from 'react-redux'
-import { follow, unfollow, setCurrentPage, toggleFollowingProgress,getUsers} from '../../redux/frends-reducer'
+import { follow, unfollow, setCurrentPage, toggleFollowingProgress,requestUsers} from '../../redux/frends-reducer'
 import Preloader from '../common/Preloader/Preloader';
 import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 import { compose } from 'redux';
+import { getUsers,getPageSize,getTotalUsersCount,getCurrentPage,getIsFetching,getFollowingInProgress } from '../../redux/users-selectors';
 
 class FrendsContainer extends React.Component{
 
@@ -33,6 +34,19 @@ class FrendsContainer extends React.Component{
     }
   }
 
+
+let mapStateToProps=(state)=>{
+    return{
+        users:getUsers(state),
+        pageSize:getPageSize(state),
+        totalUsersCount:getTotalUsersCount(state),
+        currentPage:getCurrentPage(state),
+        isFetching:getIsFetching(state),
+        followingInProgress:getFollowingInProgress(state)
+    }
+}
+
+/* 
 let mapStateToProps=(state)=>{
     return{
         users:state.frendsPage.users,
@@ -42,10 +56,12 @@ let mapStateToProps=(state)=>{
         isFetching:state.frendsPage.isFetching,
         followingInProgress:state.frendsPage.followingInProgress
     }
-}
+} */
+
+
 
 export default compose(
     /* withAuthRedirect, */
     connect(mapStateToProps, 
-        {follow, unfollow, setCurrentPage, toggleFollowingProgress, getUsers})
+        {follow, unfollow, setCurrentPage, toggleFollowingProgress, requestUsers})
 )(FrendsContainer)
