@@ -5,17 +5,18 @@ import { follow, unfollow, setCurrentPage, toggleFollowingProgress,requestUsers}
 import Preloader from '../common/Preloader/Preloader';
 import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 import { compose } from 'redux';
-import { getUsers,getPageSize,getTotalUsersCount,getCurrentPage,getIsFetching,getFollowingInProgress } from '../../redux/users-selectors';
+import { getUsers,getPageSize,getTotalUsersCount,getCurrentPage
+    ,getIsFetching,getFollowingInProgress} from '../../redux/users-selectors';
 
 class FrendsContainer extends React.Component{
 
     componentDidMount(){
-        this.props.getUsers(this.props.currentPage, this.props.pageSize)
+        this.props.requestUsers(this.props.currentPage, this.props.pageSize)
     }
 
     onPageChanged=(pageNumber)=>{
         this.props.setCurrentPage(pageNumber)
-        this.props.getUsers(pageNumber, this.props.pageSize)
+        this.props.requestUsers(pageNumber, this.props.pageSize)
     }
   
     render(){
