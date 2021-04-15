@@ -29,7 +29,7 @@ const AddNewPostForm=(props)=>{
 
 let AddNewPostFormRedux=reduxForm({form:"ProfileAddNewPostForm"})(AddNewPostForm)
 
-const MyPosts = (props)=>{
+const MyPosts = React.memo(props=>{
 
   let postElements=props.posts.map(
     pd=><Post message={pd.message} likes={pd.likes} comment={pd.comments}/>
@@ -51,7 +51,7 @@ const MyPosts = (props)=>{
         </div>
 
     )
-}
+})
 
 
 
