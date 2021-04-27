@@ -47,20 +47,6 @@ let mapStateToProps=(state)=>{
     }
 }
 
-/* 
-let mapStateToProps=(state)=>{
-    return{
-        users:state.frendsPage.users,
-        pageSize:state.frendsPage.pageSize,
-        totalUsersCount:state.frendsPage.totalUsersCount,
-        currentPage:state.frendsPage.currentPage,
-        isFetching:state.frendsPage.isFetching,
-        followingInProgress:state.frendsPage.followingInProgress
-    }
-} */
-
-
-
 export default compose(
     /* withAuthRedirect, */
     connect(mapStateToProps, 

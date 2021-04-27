@@ -1,0 +1,137 @@
+/* Эту разметку почти точно уберу, пока нужна только для определения разграничения */
+.frendsPage{
+    display: flex;
+}
+
+/* Эту разметку почти точно уберу, пока нужна только для определения разграничения */
+/* Раздел под список друзей */
+.usersList{
+    max-width: 700px;
+    border: 1px solid #e5e5e5;
+}
+
+/* Карточка пользователя */
+.userCard{
+    display:flex;
+    align-items: center;
+    max-width: 500px;
+    min-height: 90px;
+    background-color: white;
+    border-top: 1px solid #e5e5e5;
+}
+
+.userCard:first-child{
+    border-top: none;
+}
+
+/* Аватарка */
+.userAvatar{
+    margin-left: 10px; /* Пока не работает */
+}
+
+.userAvatarPhoto{
+    width:75px;
+    height: 75px;
+    border-radius: 75px;
+    cursor: pointer;
+}
+
+/* Возможно избыточна, пока не работает */
+.userAvatar{
+    cursor: pointer;
+}
+
+/* Блок информации о пользователе: Имя, Работа, где живёт */
+.userInfo__block{
+    min-width: 200px;
+    margin-left: 10px;
+}
+
+/* Отображение полного имени */
+.fullName{
+    font-size: 14px;
+    font-weight: 600;
+    color:#507299;
+    cursor: pointer;
+}
+
+.fullName:hover {
+    text-decoration: underline;
+}
+
+/* Место работы */
+.workedIn__text{
+    color:grey;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* Место проживания */
+.locationName{
+    font-size: 13px;
+}
+
+/* Кнопка "Подписаться/Отписаться" */
+
+.follow__block{
+    margin-right: 20px;
+}
+
+.follow__btn {
+    border-radius: 3px;
+    width: 75px;
+    height: 20px;
+  
+    background-color:  #507299;
+    border: 0;
+    cursor: pointer;
+  
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    line-height: 1.1;
+    font-weight: 400;
+    color:#fff;
+    text-transform: uppercase;
+  
+    transition: background .2s linear;
+  }
+  
+  .follow__btn:hover {
+    background-color: #507299;
+  }
+  
+  .follow__btn:focus {
+    outline: 0;
+  }
+
+
+  /* Элементы панели справа */
+
+  .rightPanel{
+      margin-left: 40px;
+  }
+
+  .firstPanel{/* ущербное имя потом поменять на хорошее */
+    background-color: white;
+    min-width: 300px;
+    max-width: 300px;
+    min-height: 200px;
+    text-align: center;/* Это на время заглушки */
+    border-radius: 10px;
+  }
+
+  .secondPanel{/* ущербное имя потом поменять на хорошее */
+    margin-top: 40px;
+    background-color: white;
+    min-width: 300px;
+    max-width: 300px;
+    min-height: 200px;
+    text-align: center;/* Это на время заглушки */
+    border-radius: 10px;
+  }
+
+  /* навигация пользователей по циферкам */
+
+  .selectedPage{
+      font-weight: 700;
+  }

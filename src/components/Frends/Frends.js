@@ -1,26 +1,21 @@
 import React from 'react'
 import classes from "./Frends.module.css";
 import {NavLink} from "react-router-dom"
+import Paginator from '../common/Paginator/Paginator';
 
-let Frends =(props)=>{
-    
-    let pagesCount=Math.ceil(props.totalUsersCount/props.pageSize)
-
-    let pages=[]
-
-    for (let i=1; i<=pagesCount; i++){
-      pages.push(i)
-    }
+let Frends =({currentPage,onPageChanged,totalUsersCount, pageSize,users,...props})=>{
     
     return <div>
     <div className={classes.frendsPage}>
                 <div className={classes.usersList}>
-                <div>
+                {/* <div>
                     {pages.map(p=>{
                         return <span className={props.currentPage===p && classes.selectedPage}
                                     onClick={(e)=>{props.onPageChanged(p)}}>{p}</span>})}
-                </div>
-                {props.users.map((u) => (
+                </div> */}
+                <Paginator currentPage={currentPage} onPageChanged={onPageChanged}
+                            totalUsersCount={totalUsersCount} pageSize={pageSize} />
+                {users.map((u) => (
                     <div className={classes.userCard} key={u.id}>
                     <div className={classes.userAvatar}>
                         <NavLink to={'/profile/'+u.id}>
