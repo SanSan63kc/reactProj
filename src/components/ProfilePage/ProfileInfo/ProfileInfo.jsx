@@ -9,13 +9,20 @@ const ProfileInfo = (props)=>{
     return <Preloader/>
   }
 
+    const onMainPhotoSelected=(e)=>{
+      if (e.target.files.length){
+        props.savePhoto(e.target.files[0])
+      }
+    }
+
     return(
         <div className={styles.profile__page}>
           <div className={styles.left__block}>
             
             <div className={styles.profile__ava}>
               <div className={styles.leftBlock_container}>
-                <img src={"props.profile.avaUrl"}/>
+                <img src={props.profile.photos.large||"https://vk.com/images/camera_200.png"}/>
+                {props.isOwner && <input type={"file"} onChange={onMainPhotoSelected}/>}
               </div>
             </div>
             {/* Блок подарков */}

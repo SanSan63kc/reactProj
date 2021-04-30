@@ -4,6 +4,7 @@ const ADD_POST='ADD-POST'
 const SET_USER_PROFILE='SET-USER-PROFILE'
 const SET_STATUS='SET-STATUS'
 const DELETE_POST='DELETE-POST'
+const SAVE_PHOTO_SUCCESS = 'SAVE-PHOTO-SUCCESS'
 
 let initialState={
   postsData:[
@@ -37,10 +38,10 @@ const profileReducer=(state=initialState,action)=>{
             status:action.status
           }
       }
-        case SET_USER_PROFILE:{
+        case SAVE_PHOTO_SUCCESS:{
           return{
             ...state,
-            profile:action.profile
+            profile:{...state.profile, photos:action.photos}
           }
       }
 /* обработчик для тестов */
@@ -79,6 +80,12 @@ export const addPostActionCreator=(newPostText)=>{
     }
   }
 
+  export const savePhotoSuccess=(photos)=>{
+    return{
+      type:SAVE_PHOTO_SUCCESS,photos
+    }
+  }
+
 /* ThunkCreator */
   export const getUserProfile=(userId)=>(dispatch)=>{
     usersAPI.getProfile(userId).then(response=>{   
@@ -98,6 +105,15 @@ export const addPostActionCreator=(newPostText)=>{
     .then(response=>{ 
       if (response.data.resultCode===0){
         dispatch(setStatus(status))
+      }           
+    })
+  }
+
+  export const savePhoto=(file)=>(dispatch)=>{
+    profileAPI.savePhoto(file)
+    .then(response=>{ 
+      if (response.data.resultCode===0){
+        dispatch(savePhotoSuccess(response.data.data.photos))
       }           
     })
   }
