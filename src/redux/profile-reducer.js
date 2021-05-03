@@ -38,10 +38,10 @@ const profileReducer=(state=initialState,action)=>{
             status:action.status
           }
       }
-        case SAVE_PHOTO_SUCCESS:{
+        case SET_USER_PROFILE:{
           return{
             ...state,
-            profile:{...state.profile, photos:action.photos}
+            profile:action.profile
           }
       }
 /* обработчик для тестов */
@@ -51,6 +51,14 @@ const profileReducer=(state=initialState,action)=>{
           postData:state.postData.filter(p=>p.id!=action.postId)
         }
       }
+
+      case SAVE_PHOTO_SUCCESS:{
+        return{
+          ...state,
+          profile:{...state.profile, photos:action.photos}
+        }
+      }
+
         default:
             return state
     } 

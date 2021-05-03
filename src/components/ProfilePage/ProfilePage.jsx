@@ -10,7 +10,7 @@ const ProfilePage = (props)=>{
 
   return(
       <div >
-        <ProfileInfo savePhoto={props.savePhoto} isOwner={props.isOwner} profile={props.profile} status={props.status} updateStatus={props.updateStatus}/>
+        <ProfileInfo isOwner={props.isOwner} savePhoto={props.savePhoto} profile={props.profile} status={props.status} updateStatus={props.updateStatus}/>
         <MyPostsContainer/>
       </div>
     )
