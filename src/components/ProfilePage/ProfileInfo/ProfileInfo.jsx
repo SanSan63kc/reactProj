@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Preloader from '../../common/Preloader/Preloader'
+import ProfileDataForm from './ProfileDataForm'
 import styles from './ProfileInfo.module.css'
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks"
 
 const ProfileInfo = (props)=>{
+
+  /* создам локальный state */
+  const [editMode, setEditMode]=useState(false)
 
   if (!props.profile){
     return <Preloader/>
@@ -13,6 +17,10 @@ const ProfileInfo = (props)=>{
     if(e.target.files.length){
       props.savePhoto(e.target.files[0])
     }
+  }
+
+  const onSubmit=(formData)=>{
+    console.log(formData)
   }
 
     return(
@@ -111,6 +119,10 @@ const ProfileInfo = (props)=>{
                   <div className={styles.studyIn__static}>Вуз:</div>
                   <div className={styles.studyIn__value}>{"props.profile.studyIn"} {"props.profile.studyEnd"}</div>
                 </div>
+                {/* Дополнение */}
+                {editMode
+                  ? <ProfileDataForm  profile={props.profile} onSubmit={onSubmit}/>
+                  :<ProfileData goToEditMode={()=>{setEditMode(true)}} profile={props.profile} isOwner={props.isOwner}/>}              
                 {/* Карточка со счётчиками пользователя (друзья, подписчики, фото, отметки, видео) */}
                 <div className={styles.mainInfo__card}>
                     <div className={styles.mainInfo__cardItem}>
@@ -156,6 +168,37 @@ const ProfileInfo = (props)=>{
           </div>
         </div>
     )
+}
+
+const ProfileData=({profile, isOwner, goToEditMode})=>{
+  return <div>
+          {isOwner&&<div><button onClick={goToEditMode}>edit</button></div>}
+            <div>
+              Полное имя:{profile.fullName}
+            </div>
+            <div>
+              Ищу работу:{profile.lookingForAJob?"yes":"no"}
+            </div>
+              {profile.lookingForAJob??
+            <div>
+              Мои скиллы:{profile.lookingForAJobDescription}
+            </div>}
+            <div>
+              Обо мне:{profile.aboutMe}
+            </div>
+            <div>
+              Контакты:{Object.keys(profile.contacts).map(key=>{
+                return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key]}/>
+              }) }
+            </div>
+          </div>
+}
+
+
+
+
+const Contact=({contactTitle, contactValue})=>{
+  return <div><b>{contactTitle}</b>:{contactValue}</div>
 }
 
 export default ProfileInfo;
