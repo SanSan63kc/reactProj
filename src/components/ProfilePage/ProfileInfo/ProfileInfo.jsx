@@ -4,23 +4,25 @@ import ProfileDataForm from './ProfileDataForm'
 import styles from './ProfileInfo.module.css'
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks"
 
-const ProfileInfo = (props)=>{
+const ProfileInfo = ({profile,status,updateStatus,isOwner, savePhoto, saveProfile})=>{
 
   /* создам локальный state */
   const [editMode, setEditMode]=useState(false)
 
-  if (!props.profile){
+  if (!profile){
     return <Preloader/>
   }
 
   const onMainPhotoselected=(e)=>{
     if(e.target.files.length){
-      props.savePhoto(e.target.files[0])
+      savePhoto(e.target.files[0])
     }
   }
 
   const onSubmit=(formData)=>{
-    console.log(formData)
+    saveProfile(formData)
+    /* здесь должен быть then, нов него не смог */
+    setEditMode(false)
   }
 
     return(
@@ -29,8 +31,8 @@ const ProfileInfo = (props)=>{
             
             <div className={styles.profile__ava}>
               <div className={styles.leftBlock_container}>
-              <img src={props.profile.photos.large||"https://vk.com/images/camera_200.png"}/>
-              {props.isOwner &&<input type={"file"} onChange={onMainPhotoselected}/>}
+              <img src={profile.photos.large||"https://vk.com/images/camera_200.png"}/>
+              {isOwner &&<input type={"file"} onChange={onMainPhotoselected}/>}
               </div>
             </div>
             {/* Блок подарков */}
@@ -80,12 +82,12 @@ const ProfileInfo = (props)=>{
             <div className={styles.userMainInfo__block}>
               <div className={styles.rightBlock_container} >
                   <div className={styles.namestatus}>
-                    <div className={styles.userName}>{props.profile.fullName}</div>
+                    <div className={styles.userName}>{profile.fullName}</div>
                     {/* <div className={styles.userStatus}>{props.profile.status}</div> */}
-                    <div className={styles.userOnlineStatus}>{props.profile.onlineNow ?"online":"offline"}</div>
+                    <div className={styles.userOnlineStatus}>{profile.onlineNow ?"online":"offline"}</div>
                   </div>
                   {/* Статус пользователя */}
-                  <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
+                  <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
                 {/* Дата рождения */}
                 <div className={styles.birthData__block}>
                   <div className={styles.birthData__static}>День рождения:</div>
@@ -121,8 +123,8 @@ const ProfileInfo = (props)=>{
                 </div>
                 {/* Дополнение */}
                 {editMode
-                  ? <ProfileDataForm  profile={props.profile} onSubmit={onSubmit}/>
-                  :<ProfileData goToEditMode={()=>{setEditMode(true)}} profile={props.profile} isOwner={props.isOwner}/>}              
+                  ? <ProfileDataForm initialValues={profile}  profile={profile} onSubmit={onSubmit}/>
+                  :<ProfileData goToEditMode={()=>{setEditMode(true)}} profile={profile} isOwner={isOwner}/>}              
                 {/* Карточка со счётчиками пользователя (друзья, подписчики, фото, отметки, видео) */}
                 <div className={styles.mainInfo__card}>
                     <div className={styles.mainInfo__cardItem}>

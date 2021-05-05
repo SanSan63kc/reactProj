@@ -2,9 +2,12 @@ import React from "react"
 import { reduxForm } from "redux-form"
 import { createField , Input, Textarea} from "../../common/FormsControls/FormsControls"
 
-const ProfileDataForm=({handleSubmit, profile})=>{
+const ProfileDataForm=({handleSubmit, profile, error})=>{
     return <form onSubmit={handleSubmit}>
             <div><button>save</button></div>
+            {error && <div>
+                {error}
+            </div>}
             <div>
                 Полное имя:{createField("Full name","fullName",[],Input)}
             </div>
@@ -17,14 +20,16 @@ const ProfileDataForm=({handleSubmit, profile})=>{
                 {createField("скиллы...","lookingForAJobDescription",[],Textarea)}
             </div>
             <div>
-                Обо мне:{profile.aboutMe}
+                Обо мне:
                 {createField("обо мне...","aboutMe",[],Textarea)}
             </div>
-            {/* <div>
+            <div>
                 Контакты:{Object.keys(profile.contacts).map(key=>{
-                return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key]}/>
+                return <div key={key}>
+                    <b>{key}:{createField(key,"contacts."+key,[],Input)}</b>
+                </div>
                 }) }
-            </div> */}
+            </div>
             </form>
   }
 
